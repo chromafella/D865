@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vote for Next Car | Drive865</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1 class="site-title">Drive865</h1>
+      <nav class="navbar">
+        <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="cars.html">Cars</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="vote.html">Poll</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="poll scroll-section">
+    <h2>What Car Should We Add Next?</h2>
+    <form id="carPollForm">
+      <label><input type="radio" name="vote" value="Corvette"> Chevrolet Corvette</label><br>
+      <label><input type="radio" name="vote" value="Tacoma"> Toyota Tacoma</label><br>
+      <label><input type="radio" name="vote" value="Bronco"> Ford Bronco</label><br>
+      <button type="submit" class="button">Vote</button>
+    </form>
+    <p id="pollResult"></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Drive865 – Knoxville, TN | <a href="vote.html">Vote on our next car</a></p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
