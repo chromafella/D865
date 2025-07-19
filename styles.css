@@ -1,0 +1,185 @@
+body {
+  font-family: Arial, sans-serif;
+  background: grey;
+  margin: 0;
+  padding: 40px;
+  text-align: center;
+  color: #333;
+}
+
+main {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+h1, h2 {
+  color: #222;
+}
+
+form {
+  margin-bottom: 30px;
+}
+
+form label {
+  display: block;
+  margin: 15px 0;
+  font-size: 1.2rem;
+}
+
+button {
+  background: #DB5C39;
+  color: white;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #85629B;
+}
+
+.bar {
+  text-align: left;
+  margin: 20px 0;
+}
+
+.bar span {
+  font-weight: bold;
+}
+
+.progress {
+  background: #ddd;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 5px 0;
+}
+
+.fill {
+  height: 100%;
+  background: #DB5C39;
+  width: 0%;
+  transition: width 0.5s ease-in-out;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Header */
+header {
+  background: #222;
+  color: white;
+  padding: 20px 0;
+  width: 100%;
+}
+
+header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  color: white;
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+header nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  background: #222;
+  color: white;
+  padding: 30px 0;
+  text-align: center;
+  width: 100%;
+  margin-top: 60px;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer a {
+  color: #ccc;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* Car Cards */
+.car-showcase {
+  margin-top: 60px;
+  padding: 40px 20px;
+  background: #fff;
+}
+
+.car-showcase h2 {
+  font-size: 1.6rem;
+  margin-bottom: 30px;
+}
+
+.car-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.car-card {
+  background: #fefefe;
+  padding: 20px;
+  width: 280px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.car-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.car-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Footer */
+footer {
+  background: #222;
+  color: white;
+  padding: 30px 0;
+  margin-top: 60px;
+  text-align: center;
+}
+
+footer a {
+  color: #ccc;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

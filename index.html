@@ -2,116 +2,81 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Drive865 Home</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <style>
-    .poll {
-      padding: 40px;
-      background-color: #f4f4f4;
-      text-align: center;
-    }
-
-    .poll h2 {
-      margin-bottom: 20px;
-    }
-
-    .poll label {
-      display: block;
-      margin: 10px 0;
-      font-size: 1.1rem;
-    }
-
-    .poll button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #DB5C39;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .poll button:hover {
-      background-color: #85629B;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Drive865 Poll</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Alert banner -->
-  <div class="alert-banner">
-    WORK IN PROGRESS | Last Updated 7/13/25
-  </div>
-
   <!-- Header -->
   <header>
-    <div class="header-content">
-      <h1 class="site-title">Drive865</h1>
-      <nav class="navbar">
-        <button class="menu-toggle" aria-label="Toggle menu">☰</button>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="cars.html">Cars</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="vote.html">Poll</a></li>
-        </ul>
+    <div class="container">
+      <h1>🚗 Drive865</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="vote.html">Poll</a>
+        <a href="#">Cars</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero section -->
-  <section class="hero">
-    <h2>Explore Knoxville with Drive865</h2>
-    <p>Affordable car rentals powered by Turo. Locally owned. Hassle-free experience.</p>
-    <div class="button-container">
-      <a href="cars.html" class="button">Browse Cars</a>
-      <a href="vote.html" class="button secondary">Vote on Next Car</a>
-    </div>
-  </section>
+  <main>
+    <!-- Poll Title -->
+    <h2>What Car Should We Add Next?</h2>
 
-  <!-- Poll Section -->
-  <section class="poll">
-    <h2>Help Us Choose the Next Car!</h2>
-    <form id="carPollForm">
-      <label><input type="radio" name="vote" value="Tesla" /> Tesla</label>
-      <label><input type="radio" name="vote" value="Tesla" /> Tesla</label>
-      <label><input type="radio" name="vote" value="Tesla" /> Tesla</label>
-      <button type="submit">Vote</button>
+    <!-- Poll Form -->
+    <form id="pollForm">
+      <label><input type="radio" name="vote" value="Corvette" /> Chevrolet Corvette</label>
+      <label><input type="radio" name="vote" value="Tacoma" /> Toyota Tacoma</label>
+      <label><input type="radio" name="vote" value="Bronco" /> Ford Bronco</label>
+      <button type="submit">Submit Vote</button>
     </form>
-    <p id="pollResult"></p>
-  </section>
+
+    <!-- Live Results -->
+    <div id="results" class="hidden">
+      <h3>Live Results</h3>
+      <div class="bar"><span>Corvette</span>
+        <div class="progress"><div id="bar-Corvette" class="fill"></div></div>
+        <p id="percent-Corvette">0%</p>
+      </div>
+      <div class="bar"><span>Tacoma</span>
+        <div class="progress"><div id="bar-Tacoma" class="fill"></div></div>
+        <p id="percent-Tacoma">0%</p>
+      </div>
+      <div class="bar"><span>Bronco</span>
+        <div class="progress"><div id="bar-Bronco" class="fill"></div></div>
+        <p id="percent-Bronco">0%</p>
+      </div>
+    </div>
+
+    <!-- Car Preview Section -->
+    <section class="car-showcase">
+      <h2>Featured Rentals</h2>
+      <div class="car-grid">
+        <div class="car-card">
+          <img src="images/tesla.jpg" alt="Tesla Model 3" />
+          <h4>Tesla Model 3</h4>
+          <p>All-electric, tech-savvy, perfect for cruising Knoxville in style.</p>
+        </div>
+        <div class="car-card">
+          <img src="images/jeep.jpg" alt="Jeep Wrangler" />
+          <h4>Jeep Wrangler</h4>
+          <p>Rugged and ready for the Smoky Mountains or downtown adventures.</p>
+        </div>
+        <div class="car-card">
+          <img src="images/civic.jpg" alt="Honda Civic" />
+          <h4>Honda Civic</h4>
+          <p>Fuel-efficient and reliable — a Knoxville favorite.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Drive865 – Knoxville, TN | <a href="vote.html">Vote on our next car</a></p>
+    <p>&copy; 2025 Drive865 | Knoxville, TN</p>
+    <p><a href="vote.html">Vote on our next car</a> | <a href="#">Contact</a></p>
   </footer>
 
-  <!-- Inline JS -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const form = document.getElementById("carPollForm");
-      const result = document.getElementById("pollResult");
-
-      if (form) {
-        form.addEventListener("submit", function (e) {
-          e.preventDefault();
-          const selected = form.querySelector("input[name='vote']:checked");
-          if (selected) {
-            const vote = selected.value;
-            localStorage.setItem("drive865_vote", vote);
-            result.textContent = "Thanks! You voted for: " + vote;
-          } else {
-            alert("Please select an option before voting.");
-          }
-        });
-
-        const savedVote = localStorage.getItem("drive865_vote");
-        if (savedVote) {
-          result.textContent = "You already voted for: " + savedVote;
-        }
-      }
-    });
-  </script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
