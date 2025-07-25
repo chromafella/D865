@@ -1,8 +1,8 @@
-// Firebase setup
+// Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
+import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
-// Firebase config
+// Your Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCT_GUJ64YUlJCHiLU-yQVNd-GMhNbdelo",
@@ -19,62 +19,67 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-// Poll form elements
-const pollForm = document.getElementById("pollForm");
-const suggestionInput = document.getElementById("suggestionInput");
-const pollResult = document.getElementById("pollResult");
-
-// Event listener for poll submission
-pollForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const suggestion = suggestionInput.value.trim();
-
-  if (!suggestion) {
-    pollResult.textContent = "Please enter a car suggestion.";
-    pollResult.classList.remove("hidden");
-    return;
-  }
-
-  // Check if already submitted
-  const hasVoted = localStorage.getItem("hasVotedPoll");
-  if (hasVoted) {
-    pollResult.textContent = "Sorry, you've already submitted a suggestion.";
-    pollResult.classList.remove("hidden");
-    return;
-  }
-
-  // Save suggestion to Firebase
-  const pollRef = ref(database, "pollSuggestions");
-  push(pollRef, { suggestion });
-
-  // Set local flag
-  localStorage.setItem("hasVotedPoll", "true");
-
-  // UI feedback
-  pollForm.reset();
-  pollResult.textContent = "Thank you! Your suggestion has been recorded.";
-  pollResult.classList.remove("hidden");
-});
-
-import { onValue } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
-
+// DOM elements
+const input = document.getElementById("suggestionInput");
+const submitBtn = document.getElementById("submitSuggestion");
+const result = document.getElementById("suggestionResult");
 const ticker = document.getElementById("ticker-text");
 
-function updateTickerText(suggestions) {
-  if (!suggestions || Object.keys(suggestions).length === 0) {
-    ticker.textContent = "No suggestions yet. Be the first to submit one!";
+// Submit suggestion to Firebase
+if (submitBtn) {
+  submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const suggestion = input.value.trim();
+    if (suggestion === "") {
+      result.textContent = "Please enter a suggestion.";
+      return;
+    }
+
+    const suggestionRef = ref(database, "pollSuggestions");
+    push(suggestionRef, {
+      suggestion: suggestion,
+      timestamp: Date.now()
+    });
+
+    result.textContent = "Thanks for your suggestion!";
+    input.value = "";
+  });
+}
+
+// Listen for live updates to suggestions
+function updateTickerText(data) {
+  if (!data) {
+    ticker.textContent = "No suggestions yet. Be the first!";
     return;
   }
 
-  const entries = Object.values(suggestions);
-  const text = entries.map(entry => `🚘 ${entry.suggestion}`).join(" — ");
+  const entries = Object.values(data);
+  const text = entries.map(entry => `🚗 ${entry.suggestion}`).join(" — ");
   ticker.textContent = text;
 }
 
-// Realtime updates
 const pollRef = ref(database, "pollSuggestions");
 onValue(pollRef, (snapshot) => {
   const data = snapshot.val();
   updateTickerText(data);
 });
+
+document.getElementById("suggestionForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const suggestion = input.value.trim();
+  if (suggestion === "") {
+    result.textContent = "Please enter a suggestion.";
+    return;
+  }
+
+  const suggestionRef = ref(database, "pollSuggestions");
+  push(suggestionRef, {
+    suggestion: suggestion,
+    timestamp: Date.now()
+  });
+
+  result.textContent = "Thanks for your suggestion!";
+  input.value = "";
+});
+
