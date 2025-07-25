@@ -437,6 +437,44 @@ footer a:hover {
   width: auto;
 }
 
+.tickertape-container {
+  width: 100%;
+  overflow: hidden;
+  background-color: #222;
+  padding: 10px 0;
+  box-sizing: border-box;
+}
+
+.tickertape {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 15s linear infinite;
+  font-size: 1rem;
+  color: #fff;
+  padding-left: 100%;
+}
+
+/* Make the text look better on mobile */
+@media screen and (max-width: 600px) {
+  .tickertape {
+    font-size: 0.9rem;
+    padding-left: 100%;
+  }
+
+  .tickertape-container {
+    padding: 10px;
+  }
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
 @keyframes ticker {
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); }
@@ -457,11 +495,22 @@ footer a:hover {
   text-align: center;
 }
 
-.turo-credibility img.turo-badge {
-  height: 100px;
-  max-width: auto;
+.turo-credibility {
+  display: flex;
+  max-width: max-content;
+  max-height: max-content;
+  border-radius: 8px;
+  margin: 40px auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+img.turo-badge {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
   border-radius: 8px;
   margin: 20px auto;
+  display: block;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
