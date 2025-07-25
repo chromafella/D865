@@ -368,35 +368,79 @@ footer a:hover {
 }
 
 
-.poll, .poll h2 {
-  color: black;
-  padding: 50px 20px;
-  text-align: center;
+.poll-section {
   background-color: #fff8ed;
+  padding: 50px 20px;
   margin-top: 60px;
+  text-align: center;
+  border-top: 4px solid #db6f00;
+}
+
+.poll-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.poll-section p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #555;
 }
 
 #suggestionInput {
-  padding: 12px;
+  padding: 14px;
   width: 80%;
   max-width: 400px;
   font-size: 1rem;
   border: 2px solid #db6f00;
   border-radius: 6px;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   outline: none;
 }
 
 #suggestionInput:focus {
   border-color: #a44c00;
-  box-shadow: 0 0 5px #db6f00;
+  box-shadow: 0 0 6px #db6f00;
 }
 
-#suggestionResult {
-  margin-top: 10px;
+.poll-result {
+  margin-top: 20px;
   font-style: italic;
+  font-size: 1rem;
   color: #333;
 }
+
+.hidden {
+  display: none;
+}
+
+.poll-ticker {
+  background-color: #222;
+  color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  padding: 12px 0;
+  position: relative;
+  border-top: 3px solid #db6f00;
+  border-bottom: 3px solid #db6f00;
+}
+
+#ticker-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: ticker 25s linear infinite;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fef2d0;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
 
 .turo-credibility {
   background-color: #f7f7f7;
