@@ -7,6 +7,21 @@ body {
   color: #333;
 }
 
+body {
+  background-color: #2f2f2f; /* your current grey */
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent 0 80px,
+    rgba(255, 255, 255, 0.03) 80px 160px
+  ),
+  repeating-linear-gradient(
+    -45deg,
+    transparent 0 80px,
+    rgba(255, 255, 255, 0.03) 80px 160px
+  );
+  color: #fff;
+}
+
 html, body {
   margin: auto;
   padding: 0;
