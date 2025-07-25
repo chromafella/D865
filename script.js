@@ -68,7 +68,7 @@ function updateTickerText(suggestions) {
   }
 
   const entries = Object.values(suggestions);
-  const text = entries.map(entry => `🚘 ${entry.suggestion}`).join(" — ");
+  const text = entries.map(entry => `Someone wants a: ${entry.suggestion}`).join(" — ");
   ticker.textContent = text;
 }
 
