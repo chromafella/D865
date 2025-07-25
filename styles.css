@@ -441,6 +441,14 @@ footer a:hover {
   100% { transform: translateX(-100%); }
 }
 
+.prefix {
+  color: #ccc;
+}
+.highlight {
+  color: #DB5C39;
+  font-weight: bold;
+}
+
 
 .turo-credibility {
   background-color: #f7f7f7;
