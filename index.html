@@ -148,12 +148,11 @@
 <section class="poll-section">
   <h2>What Car Should We Add Next?</h2>
   <p>Let us know what you'd love to see in our lineup!</p>
-  <form id="suggestionForm">
-    <input type="text" id="suggestionInput" placeholder="e.g., 2023 Tesla Model 3 AWD Long Range, ...">
-    <button id="submitSuggestion" class="pretty-button highlight">Submit Suggestion</button>
-    <div id="suggestionResult"></div>
+  <form id="pollForm">
+    <input type="text" id="suggestionInput" placeholder="e.g., 2023 Tesla Model 3 AWD Long Range, ..." required>
+    <button type="submit" class="pretty-button highlight">Submit Suggestion</button>
   </form>
-  <p id="suggestionResult" class="poll-result hidden">Thanks for your input!</p>
+  <p id="pollResult" class="poll-result hidden">Thanks for your input!</p>
   <br>
   <div class="poll-ticker">
   <div id="ticker-text">Loading suggestions...</div>
@@ -174,7 +173,7 @@
   </div>
   <br>
     <p>&copy; 2025 Drive865 | Knoxville, TN</p>
-    <p style="color: aqua;">v7.25.25.0.5</p>
+    <p style="color: aqua;">v7.25.25.0.9</p>
     <p><a href="vote.html">Vote on our next car</a> | <a href="#">Contact</a></p>
   </footer>
 
