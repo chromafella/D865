@@ -130,6 +130,30 @@ header nav a:hover {
   text-decoration: underline;
 }
 
+#navbar {
+    padding: 2%;
+    overflow: hidden;
+    background-color: beige;
+    border-bottom: 15px solid orange;
+}
+
+#navbar a {
+    font-size: 16pt;
+    font-weight: bold;
+    float: none;
+    justify-content: center;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#navbar a:hover {
+    background-color: orange;
+    border-radius: 6px;
+    color: #222222;
+}
+
 /* Footer */
 footer {
   background: #222;
@@ -298,17 +322,19 @@ footer a:hover {
 .car-options, .new-arrivals {
   padding: 50px 20px;
   text-align: center;
-  background-color: #f9f9f9;
+  color: white;
+  background-color: #222222;
 }
 
 .car-options h2, .new-arrivals h2 {
-  font-size: 1.8rem;
-  margin-bottom: 25px;
+  font-size: 2.6rem;
+  margin-bottom: 70px;
+  color: white;
 }
 
 .button-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(justify-content, minmax(220px, 1fr));
   gap: 20px;
   justify-items: center;
 }
@@ -324,7 +350,26 @@ footer a:hover {
   box-shadow: 0 2px 0 #a44c00;
 }
 
-.poll {
+.car-button-with-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.car-button-with-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+.poll, .poll h2 {
+  color: black;
   padding: 50px 20px;
   text-align: center;
   background-color: #fff8ed;
@@ -361,7 +406,7 @@ footer a:hover {
 
 .turo-credibility img.turo-badge {
   height: 100px;
-  max-width: 500px;
+  max-width: 600px;
   border-radius: 8px;
   margin: 20px auto;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -382,16 +427,37 @@ footer a:hover {
 
 .review-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
   margin-top: 30px;
 }
 
+
 .review-grid blockquote {
-  background: #fff;
+  background: beige;
   padding: 20px;
   border-left: 5px solid #db6f00;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   font-style: italic;
   color: #444;
+}
+
+.review-card {
+  background: #222222;
+  padding: 20px;
+  border-radius: 10%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-style: italic;
+  color: #444;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.review-card .car-name,
+.review-card .review-date {
+  font-style: normal;
+  font-size: 0.9rem;
+  color: white;
+  margin-top: 8px;
 }

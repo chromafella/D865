@@ -3,39 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Cars | Drive865</title>
+  <title>Drive865</title>
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-<header>
+  <!-- Header -->
+  <header>
   <div class="container">
-    <h1>🚗 Drive865</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="cars.html">Cars</a>
-      <a href="vote.html">Poll</a>
-    </nav>
-  </div>
+    <a href="index.html" class="logo">
+      <img src="images/487925518_1834375367349844_7067671815644567298_n.jpg" alt="Drive865 Logo">
+      <div class="logo-text">
+        <span class="main-title">Drive865</span>
+        <span class="tagline">Iconic Turo Rentals of East TN</span>
+      </div>
+    </a>
 </header>
 
+<div id="navbar">
+        <a href="index.html">Home</a>
+        <a href="cars.html">Cars</a>
+        <a href="https://turo.com/us/en/drivers/34704063">Turo</a>
+  </div>
 
-  <section class="gallery">
-    <h2>Available Cars</h2>
-    <div class="image-grid">
-      <div class="car-card">
-        <img src="images/tesla.jpg" alt="Tesla Model 3">
-        <div class="overlay">Tesla Model 3 – Electric, smooth ride, high tech</div>
-      </div>
-      <div class="car-card">
-        <img src="images/jeep.jpg" alt="Jeep Wrangler">
-        <div class="overlay">Jeep Wrangler – Rugged, convertible, off-road ready</div>
-      </div>
-      <!-- Add more cars here -->
+      <!-- New Arrivals Section -->
+  <section class="new-arrivals">
+    <h2>New Arrivals</h2>
+    <div class="button-grid">
+      <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/mazda/miata/3211941" target="_blank" class="pretty-button highlight">
+  Mazda Miata 1995 (Classic)
+</a>
+      <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/nissan/nv/3279423" target="_blank" class="pretty-button highlight">
+  Nissan NV 2017
+</a>
+      <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/honda/civic/3183327" target="_blank" class="pretty-button highlight">
+  Honda Civic 2023
+</a>
     </div>
   </section>
 
+  <!-- All Rentals Section -->
+  <section class="car-options">
+    <h2>All Available Rentals</h2>
+    <div class="button-grid">
+      <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/subaru/brz/2598717" target="_blank" class="pretty-button">
+  Subaru BRZ 2020
+</a>
+      <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/toyota/supra/3096859?endDate=07%2F30%2F2025&endTime=13%3A00&startDate=07%2F27%2F2025&startTime=21%3A00" target="_blank" class="pretty-button">
+  Toyota Supra 2021
+</a>
+      <a href="https://turo.com/us/en/suv-rental/united-states/maryville-tn/toyota/fj-cruiser/3104600" target="_blank" class="pretty-button">
+  Toyota FJ Cruiser 2013
+</a>
+      <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/honda/odyssey/3146147" target="_blank" class="pretty-button">
+  Honda Odyssey 2023
+</a>
+      <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/honda/civic/3183327" target="_blank" class="pretty-button">
+  Honda Civic 2023
+</a>
+      <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/mazda/miata/3211941" target="_blank" class="pretty-button">
+  Mazda Miata 1995
+</a>
+      <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/nissan/nv/3279423" target="_blank" class="pretty-button">
+  Nissan NV 2017
+</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Drive865 – Knoxville, TN</p>
+    <div class="social-links">
+  <a href="https://www.instagram.com/drive.865/" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.facebook.com/profile.php?id=61575048151037" target="_blank"><i class="fab fa-facebook"></i></a>
+  <a href="https://www.youtube.com/@drive.865" target="_blank"><i class="fab fa-youtube"></i></a>
+  </div>
+  <br>
+    <p>&copy; 2025 Drive865 | Knoxville, TN</p>
+    <p><a href="vote.html">Vote on our next car</a> | <a href="#">Contact</a></p>
   </footer>
+
+<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-database-compat.js"></script>
+<script src="script.js"></script>
+
 </body>
 </html>
