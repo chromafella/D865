@@ -3,12 +3,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebas
 import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
 
 // Firebase config
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCT_GUJ64YUlJCHiLU-yQVNd-GMhNbdelo",
   authDomain: "drive865-de742.firebaseapp.com",
   databaseURL: "https://drive865-de742-default-rtdb.firebaseio.com",
   projectId: "drive865-de742",
-  storageBucket: "drive865-de742.appspot.com",
+  storageBucket: "drive865-de742.firebasestorage.app",
   messagingSenderId: "695645566102",
   appId: "1:695645566102:web:bc9365478bc56759aefeb7",
   measurementId: "G-301ZWF6QK0"
