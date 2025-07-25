@@ -3,80 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Drive865 Poll</title>
+  <title>Drive865</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
   <!-- Header -->
   <header>
-    <div class="container">
-      <h1>🚗 Drive865</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="vote.html">Poll</a>
-        <a href="#">Cars</a>
-      </nav>
-    </div>
-  </header>
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img src="images/487925518_1834375367349844_7067671815644567298_n.jpg" alt="Drive865 Logo" />
+      <div class="logo-text">
+        <span class="main-title">Drive865</span>
+        <span class="tagline">Iconic Turo Rentals of East TN</span>
+      </div>
+    </a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="cars.html">Cars</a>
+      <a href="vote.html">Poll</a>
+      <a href="https://turo.com/us/en/drivers/34704063">Turo</a>
+    </nav>
+  </div>
+</header>
+
 
   <main>
-    <!-- Poll Title -->
-    <h2>What Car Should We Add Next?</h2>
+  <section class="turo-credibility">
+    <div class="container">
+      <img src="images/turologo.png" alt="turo logo" style="max-width: 100px; max-height: 100px;">
+  <h2>🏆 All-Star Host on Turo</h2>
+  <img src="images/turo-profile.png" alt="Drive865 Turo All-Star Host Profile" class="turo-badge" />
+  <p class="turo-note">We're proud to be an All-Star Host on Turo with a 5-star average rating from dozens of happy renters!</p>
+  <a href="https://turo.com/us/en/drivers/34704063" target="_blank" class="pretty-button">View Our Turo Profile</a>
+  </div>
+</section>
+<section class="reviews">
+  <div class="container">
+  <h2>🌟 What Our Guests Say</h2>
+  <div class="review-grid">
+    <blockquote>"Car was spotless and the pickup was so smooth. 10/10!" – Amanda B.</blockquote>
+    <blockquote>"One of the best hosts I've rented from. Highly recommended." – Chris J.</blockquote>
+    <blockquote>"Drive865 made our Knoxville trip amazing." – Emily T.</blockquote>
+  </div>
+  <a href="https://turo.com/us/en/drivers/your-profile-link" target="_blank" class="pretty-button">Book on Turo</a>
 
-    <!-- Poll Form -->
-    <form id="pollForm">
-      <label><input type="radio" name="vote" value="Corvette" /> Chevrolet Corvette</label>
-      <label><input type="radio" name="vote" value="Tacoma" /> Toyota Tacoma</label>
-      <label><input type="radio" name="vote" value="Bronco" /> Ford Bronco</label>
-      <button type="submit">Submit Vote</button>
-    </form>
+</section>
 
-    <!-- Live Results -->
-    <div id="results" class="hidden">
-      <h3>Live Results</h3>
-      <div class="bar"><span>Corvette</span>
-        <div class="progress"><div id="bar-Corvette" class="fill"></div></div>
-        <p id="percent-Corvette">0%</p>
-      </div>
-      <div class="bar"><span>Tacoma</span>
-        <div class="progress"><div id="bar-Tacoma" class="fill"></div></div>
-        <p id="percent-Tacoma">0%</p>
-      </div>
-      <div class="bar"><span>Bronco</span>
-        <div class="progress"><div id="bar-Bronco" class="fill"></div></div>
-        <p id="percent-Bronco">0%</p>
-      </div>
+
+      <!-- New Arrivals Section -->
+  <section class="new-arrivals">
+    <h2>New Arrivals</h2>
+    <div class="button-grid">
+      <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/subaru/brz/2598717?endDate=07%2F24%2F2025&endTime=20%3A30&startDate=07%2F21%2F2025&startTime=10%3A00" target="_blank" class="pretty-button">
+  2020 Subaru BRZ
+</a>
+      <button class="pretty-button highlight">2024 Toyota GR86</button>
+      <button class="pretty-button highlight">2024 Ford Bronco</button>
+      <button class="pretty-button highlight">2024 Hyundai Ioniq 5</button>
+      <button class="pretty-button highlight">2024 Lexus GX</button>
     </div>
+  </section>
+  <!-- All Rentals Section -->
+  <section class="car-options">
+    <h2>Available Rentals</h2>
+    <div class="button-grid">
+      <button class="pretty-button" data-vote="Corvette">Awaiting Data...</button>
+      <button class="pretty-button" data-vote="Corvette">Awaiting Data...</button>
+      <button class="pretty-button" data-vote="Corvette">Awaiting Data...</button>
+      <button class="pretty-button" data-vote="Corvette">Awaiting Data...</button>
+      <button class="pretty-button" data-vote="Corvette">Awaiting Data...</button>
+      <button class="pretty-button" data-vote="Corvette">Awaiting Data...</button>
+      <button class="pretty-button" data-vote="Corvette">Awaiting Data...</button>
+      <button class="pretty-button" data-vote="Corvette">Awaiting Data...</button>
+      <button class="pretty-button" data-vote="Corvette">Awaiting Data...</button>
+      <button class="pretty-button" data-vote="Corvette">Awaiting Data...</button>
+      <button class="pretty-button" data-vote="Corvette">Awaiting Data...</button>
+      <button class="pretty-button" data-vote="Corvette">Awaiting Data...</button>
+      <a href="https://turo.com/us/en/car-rental/united-states/tesla/model-3/1234567" target="_blank" class="pretty-button">
+  2023 Tesla Model 3
+</a>
 
-    <!-- Car Preview Section -->
-    <section class="car-showcase">
-      <h2>Featured Rentals</h2>
-      <div class="car-grid">
-        <div class="car-card">
-          <img src="images/tesla.jpg" alt="Tesla Model 3" />
-          <h4>Tesla Model 3</h4>
-          <p>All-electric, tech-savvy, perfect for cruising Knoxville in style.</p>
-        </div>
-        <div class="car-card">
-          <img src="images/jeep.jpg" alt="Jeep Wrangler" />
-          <h4>Jeep Wrangler</h4>
-          <p>Rugged and ready for the Smoky Mountains or downtown adventures.</p>
-        </div>
-        <div class="car-card">
-          <img src="images/civic.jpg" alt="Honda Civic" />
-          <h4>Honda Civic</h4>
-          <p>Fuel-efficient and reliable — a Knoxville favorite.</p>
-        </div>
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+<!-- Poll at the Bottom -->
+<section class="poll">
+  <h2>What Car Should We Add Next?</h2>
+  <form id="suggestionForm">
+  <input type="text" id="suggestionInput" placeholder="Suggest a car..." required />
+  <button type="submit" class="pretty-button">Submit Suggestion</button>
+</form>
+<p id="suggestionResult"></p>
+<div class="bar"><span>Corvette</span><div class="progress"><div id="bar-Corvette" class="fill"></div></div><p id="percent-Corvette">0%</p></div>
+
+</section>
+
+</main>
+
 
   <!-- Footer -->
   <footer>
+    <div class="social-links">
+  <a href="https://www.instagram.com/drive.865/" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.facebook.com/profile.php?id=61575048151037" target="_blank"><i class="fab fa-facebook"></i></a>
+  <a href="https://www.youtube.com/@drive.865" target="_blank"><i class="fab fa-youtube"></i></a>
+  </div>
+  <br>
     <p>&copy; 2025 Drive865 | Knoxville, TN</p>
     <p><a href="vote.html">Vote on our next car</a> | <a href="#">Contact</a></p>
   </footer>
 
-  <script type="module" src="script.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-database-compat.js"></script>
+<script src="js/script.js"></script>
+
 </body>
 </html>

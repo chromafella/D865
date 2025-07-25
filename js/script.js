@@ -1,60 +1,78 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-database.js";
-
+// Initialize Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyCT_GUJ64YUlJCHiLU-yQVNd-GMhNbdelo",
   authDomain: "drive865-de742.firebaseapp.com",
   databaseURL: "https://drive865-de742-default-rtdb.firebaseio.com",
   projectId: "drive865-de742",
-  storageBucket: "drive865-de742.firebasestorage.app",
+  storageBucket: "drive865-de742.appspot.com",
   messagingSenderId: "695645566102",
   appId: "1:695645566102:web:bc9365478bc56759aefeb7",
   measurementId: "G-301ZWF6QK0"
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
-const form = document.getElementById("pollForm");
-const results = document.getElementById("results");
-const choices = ["Corvette", "Tacoma", "Bronco"];
+document.addEventListener("DOMContentLoaded", () => {
+  const resultText = document.getElementById("pollResult");
+  const choices = ["Corvette", "Tacoma", "Bronco"];
 
-// Load results from DB
-function updateResults(snapshot) {
-  const data = snapshot.val() || {};
-  const totalVotes = Object.values(data).reduce((sum, val) => sum + val, 0);
+  // ✅ Only apply voting logic to buttons with [data-vote]
+  const voteButtons = document.querySelectorAll(".pretty-button[data-vote]");
+  voteButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const vote = button.dataset.vote;
 
-  choices.forEach(choice => {
-    const count = data[choice] || 0;
-    const percent = totalVotes > 0 ? Math.round((count / totalVotes) * 100) : 0;
-    document.getElementById(`percent-${choice}`).textContent = `${percent}%`;
-    document.getElementById(`bar-${choice}`).style.width = `${percent}%`;
+      if (localStorage.getItem("drive865_voted")) {
+        alert("You already voted.");
+        return;
+      }
+
+      const voteRef = db.ref(`votes/${vote}`);
+      voteRef.transaction(current => (current || 0) + 1).then(() => {
+        localStorage.setItem("drive865_voted", vote);
+        resultText.textContent = `Thanks! You voted for: ${vote}`;
+      });
+    });
   });
 
-  results.classList.remove("hidden");
-}
+  // ✅ Live Results
+  const voteRef = db.ref("votes");
+  voteRef.on("value", snapshot => {
+    const data = snapshot.val() || {};
+    const total = Object.values(data).reduce((sum, val) => sum + val, 0);
 
-// Listen for live changes
-onValue(ref(db, "votes"), updateResults);
+    choices.forEach(choice => {
+      const count = data[choice] || 0;
+      const percent = total > 0 ? Math.round((count / total) * 100) : 0;
 
-// Submit vote
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  const selected = form.querySelector("input[name='vote']:checked");
-  if (!selected) return alert("Please choose an option.");
+      const bar = document.getElementById(`bar-${choice}`);
+      const label = document.getElementById(`percent-${choice}`);
 
-  if (localStorage.getItem("drive865_voted")) {
-    return alert("You already voted. Thanks!");
-  }
-
-  const vote = selected.value;
-  const voteRef = ref(db, `votes/${vote}`);
-  
-  runTransaction(voteRef, current => (current || 0) + 1)
-    .then(() => {
-      localStorage.setItem("drive865_voted", vote);
-      alert(`Thanks! You voted for ${vote}`);
-      form.reset();
+      if (bar) bar.style.width = `${percent}%`;
+      if (label) label.textContent = `${percent}%`;
     });
+
+    const resultBox = document.getElementById("results");
+    if (resultBox) resultBox.classList.remove("hidden");
+  });
+
+  // ✅ Optional: Suggestion Form (Text Input)
+  const suggestionForm = document.getElementById("suggestionForm");
+  const suggestionInput = document.getElementById("suggestionInput");
+  const suggestionResult = document.getElementById("suggestionResult");
+
+  if (suggestionForm) {
+    suggestionForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const suggestion = suggestionInput.value.trim();
+
+      if (!suggestion) return;
+
+      db.ref("carSuggestions").push(suggestion).then(() => {
+        suggestionInput.value = "";
+        suggestionResult.textContent = "Thanks for your suggestion!";
+      });
+    });
+  }
 });

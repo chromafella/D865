@@ -1,14 +1,24 @@
 body {
   font-family: Arial, sans-serif;
   background: grey;
-  margin: 0;
+  margin: auto;
   padding: 40px;
   text-align: center;
   color: #333;
 }
 
+html, body {
+  margin: auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header, footer {
+  width: 100%;
+}
+
 main {
-  max-width: 600px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
@@ -67,6 +77,24 @@ button:hover {
 .hidden {
   display: none;
 }
+
+.container {
+  max-width: 1600px; /* Try 1800px if you want it even wider */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+section {
+  max-width: 1600px;   /* <- increase this as needed */
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+
 
 /* Header */
 header {
@@ -182,4 +210,188 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+.vote-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.pretty-button {
+  background-color: #fef2d0;
+  color: #000;
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  padding: 15px 20px;
+  gap: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 0 4px 0 #db6f00;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  width: 100%;
+  max-width: 400px;
+}
+
+.pretty-button:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #db6f00;
+}
+
+.pretty-button:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #a44c00;
+}
+
+.social-links {
+  margin-top: 15px;
+}
+
+.social-links a {
+  color: #fff;
+  font-size: 1.8rem;
+  margin: 0 10px;
+  transition: transform 0.2s ease;
+}
+
+.social-links a:hover {
+  transform: scale(1.2);
+  color: #DB5C39;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+.logo img {
+  height: 100px;
+  margin-right: 12px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.main-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+.tagline {
+  font-size: 0.9rem;
+  color: #ccc;
+  font-style: italic;
+}
+
+.car-options, .new-arrivals {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.car-options h2, .new-arrivals h2 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.pretty-button.highlight {
+  background-color: #db6f00;
+  color: white;
+  box-shadow: 0 4px 0 #a44c00;
+}
+
+.pretty-button.highlight:hover {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #a44c00;
+}
+
+.poll {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #fff8ed;
+  margin-top: 60px;
+}
+
+#suggestionInput {
+  padding: 12px;
+  width: 80%;
+  max-width: 400px;
+  font-size: 1rem;
+  border: 2px solid #db6f00;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  outline: none;
+}
+
+#suggestionInput:focus {
+  border-color: #a44c00;
+  box-shadow: 0 0 5px #db6f00;
+}
+
+#suggestionResult {
+  margin-top: 10px;
+  font-style: italic;
+  color: #333;
+}
+
+.turo-credibility {
+  background-color: #f7f7f7;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.turo-credibility img.turo-badge {
+  height: 100px;
+  max-width: 500px;
+  border-radius: 8px;
+  margin: 20px auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.turo-note {
+  font-size: 1rem;
+  margin: 20px auto;
+  max-width: 600px;
+  color: #555;
+}
+
+.reviews {
+  background: #fffbe8;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.review-grid blockquote {
+  background: #fff;
+  padding: 20px;
+  border-left: 5px solid #db6f00;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  font-style: italic;
+  color: #444;
 }
