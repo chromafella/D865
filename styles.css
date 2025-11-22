@@ -578,3 +578,710 @@ img.turo-badge {
   color: white;
   margin-top: 8px;
 }
+
+/* Header layout */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+}
+
+.account-area {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.account-btn {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.account-btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.user-email {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  color: #f5f5f5;
+}
+
+/* Modal styles */
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
+.hidden {
+  display: none;
+}
+
+.auth-modal-content {
+  background: lightgrey;
+  color: #222222;
+  border-style: solid;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  max-width: 350px;
+  width: 100%;
+  position: relative;
+}
+
+.auth-modal-content h2 {
+  margin-top: 0;
+}
+
+.auth-modal-content label {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.auth-modal-content input {
+  width: 100%;
+  padding: 0.4rem 0.5rem;
+  margin-top: 0.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.auth-submit-btn {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+}
+
+.auth-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.8rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.auth-toggle-text {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.link-btn {
+  background: orange;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 5;
+  margin-left: 5%;
+}
+
+.auth-error {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #c0392b;
+}
+
+.profile-section {
+  min-height: calc(100vh - 70px); /* adjust if your header is taller/shorter */
+  padding: 3rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: f;
+  overflow: hidden;
+}
+
+/* subtle gradient blobs in the background */
+.profile-section::before,
+.profile-section::after {
+  content: "";
+  position: fixed;
+  width: 320px;
+  height: 320px;
+  border-radius: 999px;
+  opacity: 0.45;
+  filter: blur(60px);
+  z-index: -1;
+}
+
+.profile-wrapper {
+  max-width: 800px;
+  height: 800px;
+  width: 100%;
+}
+
+.profile-card {
+  background: beige;
+  border-radius: 1.5rem;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  color: black;
+  backdrop-filter: blur(16px);
+  border-color: #000;
+  border-width: 5px;
+  border-style: solid;
+  
+}
+
+.profile-card-header {
+  display: block;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 20% 0%, #ffffff 0, #ffd5f6 30%, lightgrey 80%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+}
+
+.profile-avatar  span {
+  font-size: 2rem;
+}
+
+.profile-title {
+  font-size: 1.4rem;
+  display: block;
+  text-align: center;
+}
+
+.profile-subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.profile-email {
+  margin-top: 0.35rem;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+/* form layout */
+
+.profile-form {
+  margin-top: 0.5rem;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.profile-field label {
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  opacity: 0.9;
+}
+
+.profile-field input {
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(18, 18, 35, 0.95);
+  color: #f8f8f8;
+  font-size: 0.9rem;
+}
+
+.profile-field input::placeholder {
+  color: #9b9b9b;
+}
+
+.profile-field input:focus {
+  outline: none;
+  border-color: orange;
+  box-shadow: 0 0 0 1px orange;
+}
+
+/* save button + status */
+
+.profile-save-btn {
+  margin-top: 1.4rem;
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, darkgrey, lightgrey);
+  color: #ffffff;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.12s ease;
+}
+
+.profile-save-btn:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.profile-save-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.4);
+}
+
+.profile-status {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  min-height: 1.1em;
+  opacity: 0.95;
+}
+
+/* small screens */
+
+@media (max-width: 640px) {
+  .profile-card {
+    padding: 1.6rem 1.4rem;
+  }
+
+  .profile-card-header {
+    align-items: flex-start;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cars-main {
+  padding: 3rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.cars-title {
+  font-size: 2.7rem;
+  border-radius: 1rem;
+  border-color: #000;
+  border: solid 5px;
+  padding: 4%;
+  background-color: beige;
+  margin-bottom: 0.5rem;
+}
+
+.cars-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+.cars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.car-card {
+  background: rgba(9, 9, 20, 0.9);
+  border-radius: 1.25rem;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.car-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.car-card-body {
+  padding: 1rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.car-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.car-meta {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.car-price {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.car-card-actions {
+  margin-top: 0.75rem;
+}
+
+.view-details-btn {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  border: none;
+  background: linear-gradient(135deg, orange, #db5c39);
+  color: #fff;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.car-detail-main {
+  padding: 3rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.car-detail-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.7fr);
+  gap: 2rem;
+  color: #222;
+  background: beige;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  border: 5px solid black;
+}
+
+.car-detail-media {
+  position: block;
+}
+
+.car-detail-image {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: contain;
+}
+
+.car-detail-body {
+  padding: 1.8rem 1.8rem 1.8rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.car-detail-body h1 {
+  margin: 0.25rem 0 0.4rem;
+  font-size: 1.7rem;
+  text-align: left;
+}
+
+.back-link {
+  font-size: 1.0rem;
+  opacity: 0.9;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  margin-bottom: 0.25rem;
+}
+
+.detail-rating-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.detail-rating {
+  font-weight: 600;
+}
+
+.detail-dot {
+  opacity: 0.8;
+}
+
+.detail-trips,
+.detail-location {
+  opacity: 0.9;
+}
+
+.detail-specs-row {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.detail-tag {
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  border: 3px solid rgba(255, 255, 255, 0.16);
+  font-size: 0.8rem;
+  text-align: left;
+  opacity: 0.95;
+}
+
+.car-detail-range {
+  padding: 5px;
+  border: #000 solid 1px;
+}
+.car-detail-description {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  text-align: left;
+}
+
+.detail-sections-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.detail-section h2 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.detail-list {
+  list-style: disc;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+}
+
+.detail-list li + li {
+  margin-top: 0.25rem;
+}
+
+.detail-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.detail-price-box {
+  background: darkorange;
+  border-radius: 1.1rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.detail-price-main {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.detail-price-main span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 0.85;
+  margin-left: 0.15rem;
+}
+
+.detail-book-btn {
+  margin-top: 0.8rem;
+  width: 100%;
+}
+
+.detail-muted {
+  font-size: 0.8rem;
+  opacity: 0.75;
+  margin-top: 0.35rem;
+}
+
+.detail-muted.small {
+  font-size: 0.75rem;
+}
+
+.detail-rules-box {
+  background: darkorange;
+  border-radius: 1.1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.detail-rules-box h3 {
+  font-size: 0.95rem;
+  margin-top: 0;
+  margin-bottom: 0.45rem;
+}
+
+/* mobile layout */
+@media (max-width: 900px) {
+  .car-detail-card {
+    grid-template-columns: 1fr;
+  }
+
+  .car-detail-body {
+    padding: 1.5rem;
+  }
+
+  .detail-sections-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trip-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.trip-form label {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.trip-form input[type="date"] {
+  padding: 0.45rem 0.65rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(18, 18, 35, 0.95);
+  color: #f8f8f8;
+  font-size: 0.85rem;
+}
+
+.detail-book-btn {
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+
+.trip-status {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.trip-status-success {
+  color: #27ae60;
+}
+
+.trip-status-error {
+  color: #e74c3c;
+}
+
+.trip-status-muted {
+  color: #bbbbbb;
+}
+
+
+.trip-confirm-modal.hidden {
+  display: none;
+}
+
+
+.trip-confirm-modal {
+  position: fixed;
+  inset: 0;
+  color: black;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.trip-confirm-content {
+  background: beige;
+  color: #000;
+  border-radius: 1.25rem;
+  padding: 1.8rem 2rem;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  border: 5px solid black;
+  text-align: center;
+}
+
+.trip-confirm-content h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.trip-confirm-content p {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.trip-confirm-actions {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.trip-action-btn {
+  border-radius: 999px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: black;
+  color: white;
+}
+
+.trip-action-btn + .trip-action-btn {
+  margin-left: 0.4rem;
+}
+
+.trip-action-danger {
+  border-color: #e74c3c;
+  color: #ff7676;
+}
+
+.modal-btn {
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.modal-btn-primary {
+  background: linear-gradient(135deg, orange, #db5c39);
+  color: #ffffff;
+}
+
+.modal-btn-secondary {
+  background: grey;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.trip-form select {
+  padding: 0.45rem 0.65rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(18, 18, 35, 0.95);
+  color: #f8f8f8;
+  font-size: 0.85rem;
+}
+
+.modal-btn-danger {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+

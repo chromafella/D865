@@ -19,6 +19,27 @@
         <span class="tagline">Iconic Turo Rentals of East TN</span>
       </div>
     </a>
+  <div class="account-area">
+  <span id="user-email-display" class="user-email"></span>
+
+  <!-- New: link to profile page -->
+  <button id="profile-btn"
+  class="account-btn account-btn-secondary"
+  style="display:none;">Profile</button>
+  <button
+        id="trips-btn"
+        class="account-btn account-btn-secondary"
+        style="display:none;"
+      >
+        My Trips
+      </button>
+
+  <button id="login-open-btn" class="account-btn">Login / Sign Up</button>
+  <button id="logout-btn" class="account-btn account-btn-secondary" style="display:none;">
+    Logout
+  </button>
+</div>
+
 </header>
 
 <div id="navbar">
@@ -143,6 +164,31 @@
     </div>-->
   </section>
 
+  <!--LOGIN / SIGNUP MODAL -->
+<div id="auth-modal" class="auth-modal hidden">
+  <div class="auth-modal-content">
+    <span id="auth-modal-close" class="auth-close">&times;</span>
+    <h2 id="auth-modal-title">Login</h2>
+
+    <form id="auth-form">
+      <label for="auth-email">Email</label>
+      <input type="email" id="auth-email" required>
+
+      <label for="auth-password">Password</label>
+      <input type="password" id="auth-password" required minlength="6">
+
+      <button type="submit" id="auth-submit-btn" class="auth-submit-btn">Login</button>
+    </form>
+
+    <p class="auth-toggle-text">
+      <span id="auth-toggle-question">Don't have an account?</span>
+      <button type="button" id="auth-toggle-btn" class="link-btn">Sign up</button>
+    </p>
+
+    <p id="auth-error" class="auth-error"></p>
+  </div>
+</div>
+
 
 <!-- Poll at the Bottom -->
 <section class="poll-section">
@@ -173,13 +219,14 @@
   </div>
   <br>
     <p>&copy; 2025 Drive865 | Maryville, TN</p>
-    <p style="color: aqua;">v7.25.25.1.0</p>
+    <p style="color: aqua;">v11.22.25.3.0</p>
     <p><a href="cars.html">Select a Car</a> | <a href="#">Contact (Still Building)</a> | <a href="https://github.com/chromafella/D865">Contribute</a></p>
   </footer>
 
 <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-database-compat.js"></script>
-<script type="module" style="width: auto;" src="script.js"></script>
+<script type="module" src="script.js"></script>
+
 
 </body>
 </html>

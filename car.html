@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drive865</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img src="images/487925518_1834375367349844_7067671815644567298_n.jpg" alt="Drive865 Logo">
+      <div class="logo-text">
+        <span class="main-title">Drive865</span>
+        <span class="tagline">Iconic Turo Rentals of East TN</span>
+      </div>
+    </a>
+  <div class="account-area">
+  <span id="user-email-display" class="user-email"></span>
+
+  <!-- New: link to profile page -->
+  <button id="profile-btn"
+  class="account-btn account-btn-secondary"
+  style="display:none;">Profile</button>
+  <button
+        id="trips-btn"
+        class="account-btn account-btn-secondary"
+        style="display:none;"
+      >
+        My Trips
+      </button>
+
+  <button id="login-open-btn" class="account-btn">Login / Sign Up</button>
+  <button id="logout-btn" class="account-btn account-btn-secondary" style="display:none;">
+    Logout
+  </button>
+</div>
+
+</header>
+
+<div id="navbar">
+        <a href="index.html">Home</a>
+        <a href="cars.html">Cars</a>
+        <a href="https://turo.com/us/en/drivers/34704063">Turo</a>
+  </div>
+
+  <main class="car-detail-main">
+    <section id="car-detail" class="car-detail">
+      <!-- JS will populate this -->
+    </section>
+  </main>
+
+  <!-- auth modal (same one you use on other pages) -->
+  <div id="auth-modal" class="auth-modal hidden">
+    <div class="auth-modal-content">
+      <span id="auth-modal-close" class="auth-close">&times;</span>
+      <h2 id="auth-modal-title">Login</h2>
+
+      <form id="auth-form">
+        <label for="auth-email">Email</label>
+        <input type="email" id="auth-email" required />
+
+        <label for="auth-password">Password</label>
+        <input type="password" id="auth-password" required minlength="6" />
+
+        <button type="submit" id="auth-submit-btn" class="auth-submit-btn">Login</button>
+      </form>
+
+      <p class="auth-toggle-text">
+        <span id="auth-toggle-question">Don't have an account?</span>
+        <button type="button" id="auth-toggle-btn" class="link-btn">Sign up</button>
+      </p>
+
+      <p id="auth-error" class="auth-error"></p>
+    </div>
+  </div>
+  <!-- Trip confirmation modal -->
+<div id="trip-confirm-modal" class="trip-confirm-modal hidden">
+  <div class="trip-confirm-content">
+    <h2>Trip booked!</h2>
+    <p id="trip-confirm-message">
+      Your trip has been booked. You can view all your trips on the My Trips page.
+    </p>
+    <div class="trip-confirm-actions">
+      <button id="trip-confirm-close" class="modal-btn modal-btn-secondary">
+        Close
+      </button>
+      <a href="trips.html" id="trip-confirm-trips" class="modal-btn modal-btn-primary">
+        View My Trips
+      </a>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

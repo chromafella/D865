@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drive865</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img src="images/487925518_1834375367349844_7067671815644567298_n.jpg" alt="Drive865 Logo">
+      <div class="logo-text">
+        <span class="main-title">Drive865</span>
+        <span class="tagline">Iconic Turo Rentals of East TN</span>
+      </div>
+    </a>
+  <div class="account-area">
+  <span id="user-email-display" class="user-email"></span>
+
+  <!-- New: link to profile page -->
+  <button id="profile-btn"
+  class="account-btn account-btn-secondary"
+  style="display:none;">Profile</button>
+  <button
+        id="trips-btn"
+        class="account-btn account-btn-secondary"
+        style="display:none;"
+      >
+        My Trips
+      </button>
+
+  <button id="login-open-btn" class="account-btn">Login / Sign Up</button>
+  <button id="logout-btn" class="account-btn account-btn-secondary" style="display:none;">
+    Logout
+  </button>
+</div>
+
+</header>
+<div id="navbar">
+        <a href="index.html">Home</a>
+        <a href="cars.html">Cars</a>
+        <a href="https://turo.com/us/en/drivers/34704063">Turo</a>
+  </div>
+
+  <!-- Reuse the auth modal so you can log out here if needed -->
+  <div id="auth-modal" class="auth-modal hidden">
+    <div class="auth-modal-content">
+      <span id="auth-modal-close" class="auth-close">&times;</span>
+      <h2 id="auth-modal-title">Login</h2>
+
+      <form id="auth-form">
+        <label for="auth-email">Email</label>
+        <input type="email" id="auth-email" required />
+
+        <label for="auth-password">Password</label>
+        <input type="password" id="auth-password" required minlength="6" />
+
+        <button type="submit" id="auth-submit-btn" class="auth-submit-btn">Login</button>
+      </form>
+
+      <p class="auth-toggle-text">
+        <span id="auth-toggle-question">Don't have an account?</span>
+        <button type="button" id="auth-toggle-btn" class="link-btn">Sign up</button>
+      </p>
+
+      <p id="auth-error" class="auth-error"></p>
+    </div>
+  </div>
+
+  <!-- Profile content lives here -->
+  <main>
+  <section id="profile-section" class="profile-section">
+    <div class="profile-wrapper">
+      <div class="profile-card">
+        <div class="profile-card-header">
+          <div class="profile-avatar" style="position: relative;">
+            <span>🚗</span>
+          </div>
+          <div>
+            <h1 class="profile-title" style="position:relative">Profile</h1>
+            <p class="profile-subtitle">
+              Keep your info updated for fast & easy booking.
+            </p>
+            <p id="profile-email" class="profile-email"></p>
+          </div>
+        </div>
+
+        <form id="profile-form" class="profile-form">
+          <div class="profile-grid">
+            <div class="profile-field">
+              <label for="profile-name">Full Name</label>
+              <input
+                type="text"
+                id="profile-name"
+                placeholder=""
+              />
+            </div>
+
+            <div class="profile-field">
+              <label for="profile-phone">Phone Number</label>
+              <input
+                type="tel"
+                id="profile-phone"
+                placeholder=""
+              />
+            </div>
+
+            <div class="profile-field full-width">
+              <label for="profile-favorite-car">Favorite Type of Car</label>
+              <input
+                type="text"
+                id="profile-favorite-car"
+                placeholder=""
+              />
+            </div>
+          </div>
+
+          <button type="submit" class="profile-save-btn">
+            Save Profile
+          </button>
+
+          <p id="profile-status" class="profile-status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+  <script type="module" src="script.js"></script>
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+  <a href="https://www.instagram.com/drive.865/" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.facebook.com/profile.php?id=61575048151037" target="_blank"><i class="fab fa-facebook"></i></a>
+  <a href="https://www.youtube.com/@drive.865" target="_blank"><i class="fab fa-youtube"></i></a>
+  </div>
+  <br>
+    <p>&copy; 2025 Drive865 | Maryville, TN</p>
+    <p style="color: aqua;">v11.22.25.3.0</p>
+    <p><a href="cars.html">Select a Car</a> | <a href="#">Contact (Still Building)</a> | <a href="https://github.com/chromafella/D865">Contribute</a></p>
+  </footer>
+
+<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-database-compat.js"></script>
+<script type="module" src="script.js"></script>
+
+
+</body>
+</html>

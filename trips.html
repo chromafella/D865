@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drive865</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img src="images/487925518_1834375367349844_7067671815644567298_n.jpg" alt="Drive865 Logo">
+      <div class="logo-text">
+        <span class="main-title">Drive865</span>
+        <span class="tagline">Iconic Turo Rentals of East TN</span>
+      </div>
+    </a>
+  <div class="account-area">
+  <span id="user-email-display" class="user-email"></span>
+
+  <!-- New: link to profile page -->
+  <button id="profile-btn"
+  class="account-btn account-btn-secondary"
+  style="display:none;">Profile</button>
+  <button
+        id="trips-btn"
+        class="account-btn account-btn-secondary"
+        style="display:none;"
+      >
+        My Trips
+      </button>
+
+  <button id="login-open-btn" class="account-btn">Login / Sign Up</button>
+  <button id="logout-btn" class="account-btn account-btn-secondary" style="display:none;">
+    Logout
+  </button>
+</div>
+
+</header>
+<div id="navbar">
+        <a href="index.html">Home</a>
+        <a href="cars.html">Cars</a>
+        <a href="https://turo.com/us/en/drivers/34704063">Turo</a>
+  </div>
+
+  <!-- Reuse the auth modal so you can log out here if needed -->
+  <div id="auth-modal" class="auth-modal hidden">
+    <div class="auth-modal-content">
+      <span id="auth-modal-close" class="auth-close">&times;</span>
+      <h2 id="auth-modal-title">Login</h2>
+
+      <form id="auth-form">
+        <label for="auth-email">Email</label>
+        <input type="email" id="auth-email" required />
+
+        <label for="auth-password">Password</label>
+        <input type="password" id="auth-password" required minlength="6" />
+
+        <button type="submit" id="auth-submit-btn" class="auth-submit-btn">Login</button>
+      </form>
+
+      <p class="auth-toggle-text">
+        <span id="auth-toggle-question">Don't have an account?</span>
+        <button type="button" id="auth-toggle-btn" class="link-btn">Sign up</button>
+      </p>
+
+      <p id="auth-error" class="auth-error"></p>
+    </div>
+  </div>
+
+  <main class="cars-main">
+    <h1 class="cars-title">My Trips</h1>
+    <p class="cars-subtitle">Your upcoming and past Drive865 trips.</p>
+
+    <section id="trips-list" class="cars-grid"></section>
+    <p id="trips-empty" class="cars-subtitle"></p>
+  </main>
+<!-- Trip edit (reschedule) modal -->
+<div id="trip-edit-modal" class="trip-confirm-modal hidden">
+  <div class="trip-confirm-content">
+    <h2 id="trip-edit-title">Reschedule trip</h2>
+
+    <form id="trip-edit-form" class="trip-form">
+      <label for="trip-edit-start">Start date</label>
+      <input type="date" id="trip-edit-start" required />
+
+      <label for="trip-edit-end">End date</label>
+      <input type="date" id="trip-edit-end" required />
+
+      <p id="trip-edit-status" class="trip-status"></p>
+
+      <div class="trip-confirm-actions">
+        <button id="trip-edit-cancel" class="modal-btn modal-btn-secondary" type="button">
+          Cancel
+        </button>
+        <button id="trip-edit-save" class="modal-btn modal-btn-primary" type="submit">
+          Save changes
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- Trip delete confirmation modal -->
+<div id="trip-delete-modal" class="trip-confirm-modal hidden">
+  <div class="trip-confirm-content">
+    <h2>Delete trip?</h2>
+    <p id="trip-delete-message">
+      Are you sure you want to delete this trip? This cannot be undone.
+    </p>
+    <div class="trip-confirm-actions">
+      <button
+        id="trip-delete-cancel"
+        class="modal-btn modal-btn-secondary"
+        type="button"
+      >
+        Cancel
+      </button>
+      <button
+        id="trip-delete-confirm"
+        class="modal-btn modal-btn-primary modal-btn-danger"
+        type="button"
+      >
+        Delete trip
+      </button>
+    </div>
+  </div>
+</div>
+
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
