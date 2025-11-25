@@ -10,7 +10,7 @@
 </head>
 <body>
   <!-- Header -->
-  <header>
+<header class="site-header">
   <div class="container">
     <a href="index.html" class="logo">
       <img src="images/487925518_1834375367349844_7067671815644567298_n.jpg" alt="Drive865 Logo">
@@ -19,37 +19,86 @@
         <span class="tagline">Iconic Turo Rentals of East TN</span>
       </div>
     </a>
-  <div class="account-area">
-  <span id="user-email-display" class="user-email"></span>
 
-  <!-- New: link to profile page -->
-  <button id="profile-btn"
-  class="account-btn account-btn-secondary"
-  style="display:none;">Profile</button>
-  <button
+    <!-- Mobile: hamburger toggle -->
+    <button id="user-menu-toggle" class="user-menu-toggle" aria-label="User menu">
+      ☰
+    </button>
+
+    <!-- Desktop + mobile dropdown: single source of truth for account controls -->
+    <div class="header-user-actions" id="header-user-actions">
+      <span id="user-email-display" class="user-email"></span>
+
+      <button
+        id="profile-btn"
+        class="account-btn account-btn-secondary"
+        style="display: none;"
+      >
+        Profile
+      </button>
+
+      <button
         id="trips-btn"
         class="account-btn account-btn-secondary"
-        style="display:none;"
+        style="display: none;"
       >
         My Trips
       </button>
 
-  <button id="login-open-btn" class="account-btn">Login / Sign Up</button>
-  <button id="logout-btn" class="account-btn account-btn-secondary" style="display:none;">
-    Logout
-  </button>
-</div>
+      <button
+        id="login-open-btn"
+        class="account-btn"
+      >
+        Login / Sign Up
+      </button>
 
+      <button
+        id="logout-btn"
+        class="account-btn account-btn-secondary"
+        style="display: none;"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
 </header>
+
 
 <div id="navbar">
         <a href="index.html">Home</a>
         <a href="cars.html">Cars</a>
+        <a href="trips.html">My Trips</a>
         <a href="https://turo.com/us/en/drivers/34704063">Turo</a>
   </div>
 
 
   <main>
+
+      <!-- New Arrivals Section -->
+  <section class="new-arrivals">
+    <h2>New Arrivals</h2>
+    <div class="button-grid">
+    <div class="car-button-with-image">
+  <img src="images/21sti.jpg" alt="21sti">
+  <a href="" class="pretty-button highlight" target="_blank">
+    2021 Subaru WRX STI Limited (AVAILABLE SOON)
+  </a>
+</div>
+      <div class="car-button-with-image">
+  <img src="images/94MR2.jpg" alt="94mr2">
+  <a href="" class="pretty-button highlight" target="_blank">
+    1994 Toyota MR2 (Japan Import) [EXCLUSIVE]
+  </a>
+</div>
+      <div class="car-button-with-image">
+  <img src="images/22wrx.jpg" alt="22wrx">
+  <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/subaru/wrx/3448017" class="pretty-button highlight" target="_blank">
+    2022 Subaru WRX GT (Available Now)
+  </a>
+</div>
+    </div>
+  </section>
+
   <section class="turo-credibility">
     <div class="container">
       <img src="images/turologo.png" alt="turo logo" style="max-width: 180px; max-height: 120px;">
@@ -59,31 +108,6 @@
   <a href="https://turo.com/us/en/drivers/34704063" target="_blank" class="pretty-button">View Our Turo Profile</a>
   </div>
 </section>
-
-      <!-- New Arrivals Section -->
-  <section class="new-arrivals">
-    <h2>New Arrivals</h2>
-    <div class="button-grid">
-    <div class="car-button-with-image">
-  <img src="images/mx5.jpg" alt="95mx5">
-  <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/mazda/miata/3211941" class="pretty-button highlight" target="_blank">
-    Mazda Miata MX5 1995 (Classic)
-  </a>
-</div>
-      <div class="car-button-with-image">
-  <img src="images/23civic.jpg" alt="23civic">
-  <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/honda/civic/3183327" class="pretty-button highlight" target="_blank">
-    Honda Civic 2023
-  </a>
-</div>
-      <div class="car-button-with-image">
-  <img src="images/17nv.jpg" alt="17nissan">
-  <a href="https://turo.com/us/en/car-rental/united-states/maryville-tn/nissan/nv/3279423" class="pretty-button highlight" target="_blank">
-    Nissan NV SL 2017
-  </a>
-</div>
-    </div>
-  </section>
 
 
 <section class="reviews">
@@ -219,7 +243,7 @@
   </div>
   <br>
     <p>&copy; 2025 Drive865 | Maryville, TN</p>
-    <p style="color: aqua;">v11.22.25.3.0</p>
+    <p style="color: aqua;">build: v11.24.25.7.7_K</p>
     <p><a href="cars.html">Select a Car</a> | <a href="#">Contact (Still Building)</a> | <a href="https://github.com/chromafella/D865">Contribute</a></p>
   </footer>
 

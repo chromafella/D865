@@ -84,6 +84,25 @@ const LOCATION_LABELS = {
 };
 
 
+// Manual availability blocks: dates when the car is NOT available
+// (use YYYY-MM-DD format)
+const carAvailability = {
+  "20BRZ": [
+    { start: "2025-12-20", end: "2025-12-26" }, // example: Christmas trip booked
+    { start: "2026-01-10", end: "2026-01-12" },
+  ],
+  "21MKV": [
+    { start: "2025-12-20", end: "2025-12-26" }, // example: Christmas trip booked
+    { start: "2026-01-10", end: "2026-01-12" },
+  ],
+  "13TTE": [
+    { start: "2025-12-20", end: "2025-12-26" }, // example: Christmas trip booked
+    { start: "2026-01-10", end: "2026-01-12" },
+  ],
+};
+
+
+
 const carsData = {
   "20BRZ": {
     id: "20BRZ",
@@ -98,6 +117,7 @@ const carsData = {
     rating: 5.0,
     tripsCount: 74,
     description: "Great for rippin' manual gears on the Tail of the Dragon!",
+    turoUrl: "https://turo.com/us/en/car-rental/united-states/maryville-tn/subaru/brz/2598717",
     highlights: [
       "6-speed manual transmission",
       "Premium audio system",
@@ -122,6 +142,7 @@ const carsData = {
     rating: 4.88,
     tripsCount: 40,
     description: "Luxurious meets sporty. Great features packed into this mighty V8.",
+    turoUrl: "https://turo.com/us/en/car-rental/united-states/maryville-tn/toyota/supra/3096859",
     highlights: [
       "Heads-up display",
       "Adaptive cruise control",
@@ -146,6 +167,7 @@ const carsData = {
     rating: 5.0,
     tripsCount: 29,
     description: "Trail Teams Edition.",
+    turoUrl: "https://turo.com/us/en/suv-rental/united-states/maryville-tn/toyota/fj-cruiser/31046000",
     highlights: [
       "Off-road tuned suspension",
       "All-terrain tires",
@@ -157,6 +179,32 @@ const carsData = {
       "Dogs allowed with seat covers"
     ],
   },
+  "17NPV": {
+    id: "17NPV",
+    name: "2017 Nissan NV",
+    image: "images/17npv.jpg",
+    pricePerDay: 70,
+    range: "City: 24mpg | Freeway: 26mpg | Avg. 348miles",
+    seats: 12,
+    transmission: "Automatic",
+    fuel: "Unleaded",
+    location: "TYS Alcoa, TN | Pearson Springs Park, Maryville, TN",
+    rating: 5.0,
+    tripsCount: 11,
+    description: "Bring everyone you know!",
+    turoUrl: "https://turo.com/us/en/van-rental/united-states/maryville-tn/nissan/nv/3279423",
+    highlights: [
+      "12 SEATS!",
+      "V8 Engine",
+      "In-Mirror backup camera"
+    ],
+    rules: [
+      "No smoking/vaping of any kind",
+      "DO NOT OFFROAD IN THIS VEHICLE.",
+      "DO NOT WASH THIS VEHICLE. Getting rid of trash is always appreciated not expected."
+    ],
+  },
+
 };
 
 
@@ -742,6 +790,34 @@ if (logoutBtn) {
   });
 }
 
+//PRETTY DATE!
+// Pretty-print ISO date like "2025-12-20" -> "December 20th, 2025"
+    function formatPrettyDate(isoStr) {
+  if (!isoStr) return "";
+  const [year, month, day] = isoStr.split("-").map(Number);
+  const date = new Date(year, month - 1, day);
+
+  // "December 20, 2025"
+  const base = date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  const dayNum = date.getDate();
+  const suffix =
+    dayNum % 10 === 1 && dayNum !== 11
+      ? "st"
+      : dayNum % 10 === 2 && dayNum !== 12
+      ? "nd"
+      : dayNum % 10 === 3 && dayNum !== 13
+      ? "rd"
+      : "th";
+
+  return base.replace(String(dayNum) + ",", `${dayNum}${suffix},`);
+}
+
+
 window.addEventListener("DOMContentLoaded", () => {
     // Trip confirmation modal closing behavior
   const tripConfirmModal = document.getElementById("trip-confirm-modal");
@@ -756,6 +832,29 @@ window.addEventListener("DOMContentLoaded", () => {
   const tripDeleteModal = document.getElementById("trip-delete-modal");
   const tripDeleteCancel = document.getElementById("trip-delete-cancel");
   const tripDeleteConfirm = document.getElementById("trip-delete-confirm");
+
+    const userMenuToggle = document.getElementById("user-menu-toggle");
+  const headerUserActions = document.getElementById("header-user-actions");
+
+  if (userMenuToggle && headerUserActions) {
+    userMenuToggle.addEventListener("click", () => {
+      headerUserActions.classList.toggle("user-menu-open");
+    });
+
+    // Optional: close menu if you tap anywhere outside on mobile
+    document.addEventListener("click", (e) => {
+      if (!headerUserActions.classList.contains("user-menu-open")) return;
+
+      const clickedInside =
+        headerUserActions.contains(e.target) ||
+        userMenuToggle.contains(e.target);
+
+      if (!clickedInside) {
+        headerUserActions.classList.remove("user-menu-open");
+      }
+    });
+  }
+
 
   // Close when Cancel is pressed
   if (tripDeleteCancel) {
@@ -784,6 +883,75 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+
+  function setupBookingUI(car) {
+  const startInput = document.getElementById("trip-start");
+  const endInput = document.getElementById("trip-end");
+  const locationSelect = document.getElementById("trip-location");
+  const totalText = document.getElementById("trip-total-text");
+  const confirmBtn = document.getElementById("trip-confirm-btn");
+
+  if (!startInput || !endInput || !locationSelect || !totalText || !confirmBtn) {
+    return;
+  }
+
+  const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+
+  function recalc() {
+    const startDate = startInput.value;
+    const endDate = endInput.value;
+
+    // default state every time
+    locationSelect.disabled = true;
+    confirmBtn.disabled = true;
+
+    if (!startDate || !endDate) {
+      totalText.textContent = "Select start and end dates to begin.";
+      return;
+    }
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (start > end) {
+      totalText.textContent = "End date must be after start date.";
+      return;
+    }
+
+    // ✅ dates are valid → enable location dropdown
+    locationSelect.disabled = false;
+
+    if (!locationSelect.value) {
+      totalText.textContent = "Choose a pickup location next.";
+      return;
+    }
+
+    // ✅ dates + location → compute total + enable confirm
+    let dayCount = Math.round((end - start) / ONE_DAY_MS) + 1;
+    if (dayCount < 1) dayCount = 1;
+
+    const estimatedTotal = dayCount * car.pricePerDay;
+    const locLabel =
+      LOCATION_LABELS[locationSelect.value] || "selected pickup location";
+
+    totalText.textContent =
+      `Trip length: ${dayCount} day${dayCount > 1 ? "s" : ""}. ` +
+      `Estimated total: $${estimatedTotal.toFixed(2)}. ` +
+      `Pickup: ${locLabel}.`;
+
+    confirmBtn.disabled = false;
+  }
+
+  // hook up the “calendar” + location
+  startInput.addEventListener("change", recalc);
+  endInput.addEventListener("change", recalc);
+  locationSelect.addEventListener("change", recalc);
+
+  recalc(); // set initial message
+}
+
+
 
 
 
@@ -1008,16 +1176,27 @@ window.addEventListener("DOMContentLoaded", () => {
     card.className = "car-card";
 
     card.innerHTML = `
-      <img src="${car.image}" alt="${car.name}">
+      <div class="car-card-image">
+        <img src="${car.image}" alt="${car.name}">
+      </div>
       <div class="car-card-body">
-        <div class="car-name">${car.name}</div>
-        <div class="car-meta">
-          ${car.seats} seats • ${car.transmission} • ${car.fuel}
+        <div class="car-card-header">
+          <h2 class="car-name">${car.name}</h2>
+          <div class="car-price">$${car.pricePerDay}/day</div>
         </div>
-        <div class="car-meta">${car.range}</div>
-        <div class="car-price">$${car.pricePerDay}/day</div>
-        <div class="car-card-actions">
-          <a href="car.html?id=${car.id}" class="view-details-btn">
+
+        <div class="car-meta-line">
+          <span>${car.seats} seats</span>
+          <span>• ${car.transmission}</span>
+          <span>• ${car.fuel}</span>
+        </div>
+
+        <div class="car-meta-range">${car.range}</div>
+
+        <p class="car-desc">${car.description}</p>
+
+        <div class="car-card-footer">
+          <a href="car.html?id=${car.id}" class="car-link">
             View details
           </a>
         </div>
@@ -1025,8 +1204,9 @@ window.addEventListener("DOMContentLoaded", () => {
     `;
 
     carsGrid.appendChild(card);
-    });
-  }
+  });
+}
+
 });
 
 const isCarDetailPage = window.location.pathname.endsWith("car.html");
@@ -1063,78 +1243,243 @@ if (isCarDetailPage && carDetailSection) {
       : "";
 
     carDetailSection.innerHTML = `
-      <article class="car-detail-card">
-        <div class="car-detail-media">
-          <img src="${car.image}" alt="${car.name}" class="car-detail-image">
-        </div>
+  <article class="car-detail-card">
+    <div class="car-detail-media">
+  <img src="${car.image}" alt="${car.name}" class="car-detail-image">
 
-        <div class="car-detail-body">
-          <a href="cars.html" class="back-link">&larr; Back to all cars</a>
+  <div class="car-media-footer">
+  <a
+    href="${car.turoUrl || '#'}"
+    target="_blank"
+    rel="noopener"
+    class="turo-btn ${car.turoUrl ? '' : 'turo-btn-disabled'}"
+  >
+    <span class="turo-prefix">Book on</span>
+    <img src="images/turo-logo.png" alt="Turo" class="turo-logo-img">
+  </a>
 
-          <h1>${car.name}</h1>
+  <div id="availability-panel" class="availability-panel"></div>
+</div>
 
-          ${ratingLine}
 
-          <div class="detail-specs-row">
-            <div class="detail-tag">${car.seats} seats</div>
-            <div class="detail-tag">${car.transmission}</div>
-            <div class="detail-tag">${car.fuel}</div>
+
+    <div class="car-detail-body">
+
+      <a href="cars.html" class="back-link">&larr; Back to all cars</a>
+
+      <h1>${car.name}</h1>
+
+      ${ratingLine}
+
+      <div class="detail-specs-row">
+        <div class="detail-tag">${car.seats} seats</div>
+        <div class="detail-tag">${car.transmission}</div>
+        <div class="detail-tag">${car.fuel}</div>
+      </div>
+
+      <p class="car-detail-range">${car.range}</p>
+      <p class="car-detail-description">${car.description}</p>
+
+      <!-- NEW: big booking section -->
+      <section class="booking-section">
+      <h1>NEW: Book Directly Through Drive865</h1>
+        <h2>Schedule your trip with us directly & Save!</h2>
+        <p class="booking-price-line">
+          $${car.pricePerDay}<span>/day</span>
+        </p>
+
+        <form id="trip-form" class="booking-form">
+          <div class="booking-dates-row">
+            <div class="booking-date-field">
+              <label for="trip-start">Start date</label>
+              <input type="date" id="trip-start" required>
+            </div>
+            <div class="booking-date-field">
+              <label for="trip-end">End date</label>
+              <input type="date" id="trip-end" required>
+            </div>
           </div>
 
-          <p class="car-detail-range">${car.range}</p>
-          <p class="car-detail-description">${car.description}</p>
-
-          <div class="detail-sections-grid">
-            <section class="detail-section">
-              <h2>What this car offers</h2>
-              ${
-                highlightsHtml ||
-                "<p class='detail-muted'>Host hasn’t added highlights yet.</p>"
-              }
-            </section>
-
-            <aside class="detail-sidebar">
-              <div class="detail-price-box">
-                <div class="detail-price-main">$${car.pricePerDay}<span>/day</span></div>
-                <p class="detail-muted">Taxes and fees not included.</p>
-
-                <h3 class="trip-title">Book this car</h3>
-<form id="trip-form" class="trip-form">
-  <label for="trip-start">Start date</label>
-  <input type="date" id="trip-start" required>
-
-  <label for="trip-end">End date</label>
-  <input type="date" id="trip-end" required>
-
-  <label for="trip-location">Pickup location</label>
-  <select id="trip-location" required>
-    <option value="">Select a location</option>
-    <option value="TYS">TYS – McGhee Tyson Airport</option>
-    <option value="PS_PARK">Pearson Springs Park – Maryville, TN</option>
-  </select>
-
-  <button type="submit" class="view-details-btn detail-book-btn">
-    Confirm trip
-  </button>
-</form>
-
-<p id="trip-status" class="trip-status"></p>
-
-
-              <div class="detail-rules-box">
-                <h3>Trip rules</h3>
-                ${
-                  rulesHtml ||
-                  "<p class='detail-muted'>Standard Drive865 rules apply.</p>"
-                }
-              </div>
-            </aside>
+          <div class="booking-location-row">
+            <label for="trip-location">Pickup location</label>
+            <select id="trip-location" disabled required>
+              <option value="">Select a location</option>
+              <option value="TYS">${LOCATION_LABELS.TYS}</option>
+              <option value="PS_PARK">${LOCATION_LABELS.PS_PARK}</option>
+            </select>
           </div>
-        </div>
-      </article>
-    `;
+
+          <div class="booking-summary">
+            <p id="trip-total-text" class="booking-total-text">
+              Select start and end dates to begin.
+            </p>
+            <p id="trip-status" class="trip-status"></p>
+          </div>
+
+          <button
+            type="submit"
+            id="trip-confirm-btn"
+            class="view-details-btn booking-confirm-btn"
+            disabled
+          >
+            Confirm trip
+          </button>
+        </form>
+      </section>
+
+      <div class="detail-sections-grid">
+        <section class="detail-section">
+          <h2>What this car offers</h2>
+          ${
+            highlightsHtml ||
+            "<p class='detail-muted'>Host hasn’t added highlights yet.</p>"
+          }
+        </section>
+
+        <aside class="detail-sidebar">
+          <div class="detail-rules-box">
+            <h3>Trip rules</h3>
+            ${
+              rulesHtml ||
+              "<p class='detail-muted'>Standard Drive865 rules apply.</p>"
+            }
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+`;
+
+setupBookingUI(car);
+renderAvailabilityPanel(car);
+
+
+
   }
 }
+
+function rangeOverlapsUnavailable(start, end, blocks) {
+  if (!blocks || !blocks.length) return false;
+  const s = new Date(start);
+  const e = new Date(end);
+  if (s > e) return true;
+
+  return blocks.some((block) => {
+    const bs = new Date(block.start);
+    const be = new Date(block.end);
+    // overlap if start <= be and end >= bs
+    return s <= be && e >= bs;
+  });
+}
+
+
+function renderAvailabilityPanel(car) {
+  const panel = document.getElementById("availability-panel");
+  if (!panel) return;
+
+  const blocks = carAvailability[car.id] || [];
+
+  if (!blocks.length) {
+    panel.textContent = "No blocked dates — car is generally available.";
+    return;
+  }
+
+  let html = `<strong>Unavailable dates:</strong><ul>`;
+  blocks.forEach((block) => {
+    const startPretty = formatPrettyDate(block.start);
+    const endPretty = formatPrettyDate(block.end);
+    html += `<li>${startPretty} → ${endPretty}</li>`;
+  });
+  html += `</ul>`;
+  panel.innerHTML = html;
+}
+
+
+
+// Booking UI helper for car.html
+function setupBookingUI(car) {
+  const startInput = document.getElementById("trip-start");
+  const endInput = document.getElementById("trip-end");
+  const locationSelect = document.getElementById("trip-location");
+  const totalText = document.getElementById("trip-total-text");
+  const confirmBtn = document.getElementById("trip-confirm-btn");
+  const statusEl = document.getElementById("trip-status");
+
+  if (!startInput || !endInput || !locationSelect || !totalText || !confirmBtn) {
+    return;
+  }
+
+  const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+  const blocks = carAvailability[car.id] || [];
+
+  function recalc() {
+    const startDate = startInput.value;
+    const endDate = endInput.value;
+
+    locationSelect.disabled = true;
+    confirmBtn.disabled = true;
+
+    if (statusEl) {
+      statusEl.textContent = "";
+      statusEl.className = "trip-status";
+    }
+
+    if (!startDate || !endDate) {
+      totalText.textContent = "Select start and end dates to begin.";
+      return;
+    }
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (start > end) {
+      totalText.textContent = "End date must be after start date.";
+      return;
+    }
+
+    // 🔴 Check against unavailable blocks
+    if (rangeOverlapsUnavailable(startDate, endDate, blocks)) {
+      totalText.textContent =
+        "These dates overlap an existing trip. Please choose different dates.";
+      if (statusEl) {
+        statusEl.textContent =
+          "Selected range is not available based on the host calendar.";
+        statusEl.classList.add("trip-status-error");
+      }
+      return;
+    }
+
+    // ✅ dates are valid AND available → allow location choice
+    locationSelect.disabled = false;
+
+    if (!locationSelect.value) {
+      totalText.textContent = "Choose a pickup location next.";
+      return;
+    }
+
+    let dayCount = Math.round((end - start) / ONE_DAY_MS) + 1;
+    if (dayCount < 1) dayCount = 1;
+
+    const estimatedTotal = dayCount * car.pricePerDay;
+    const locLabel =
+      LOCATION_LABELS[locationSelect.value] || "selected pickup location";
+
+    totalText.textContent =
+      `Trip length: ${dayCount} day${dayCount > 1 ? "s" : ""}. ` +
+      `Estimated total: $${estimatedTotal.toFixed(2)}. ` +
+      `Pickup: ${locLabel}.`;
+
+    confirmBtn.disabled = false;
+  }
+
+  startInput.addEventListener("change", recalc);
+  endInput.addEventListener("change", recalc);
+  locationSelect.addEventListener("change", recalc);
+
+  recalc();
+}
+
+
 
 
 
