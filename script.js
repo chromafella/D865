@@ -182,7 +182,7 @@ const carsData = {
   "17NPV": {
     id: "17NPV",
     name: "2017 Nissan NV",
-    image: "images/17npv.jpg",
+    image: "images/17NPV.jpg",
     pricePerDay: 70,
     range: "City: 24mpg | Freeway: 26mpg | Avg. 348miles",
     seats: 12,
