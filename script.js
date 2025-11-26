@@ -1218,7 +1218,9 @@ if (isCarDetailPage && carDetailSection) {
 
   if (!car) {
     carDetailSection.innerHTML = `
-      <p>Sorry, we couldn't find that car.</p>
+      <h1 style="color: red">Error</h1>
+      <h2 style="color: white">Oops! That car is not yet listed, or does not exist.</h2>
+      <p>:id not found</p>
       <p><a href="cars.html" class="view-details-btn">Back to all cars</a></p>
     `;
   } else {

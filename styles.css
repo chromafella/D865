@@ -250,6 +250,166 @@ footer a:hover {
 }
 
 
+/* ===== New Arrivals – lighter, wider cards ===== */
+
+.new-arrivals {
+  padding: 3rem 1rem 3.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.new-arrivals .section-title {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.new-arrivals .section-subtitle {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 1.6rem;
+}
+
+/* One big listing-style card per row */
+.new-arrivals-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center; /* center the wide cards */
+}
+
+.new-arrival-card {
+  display: flex;
+  flex-direction: row;
+  background: #f7f7f7;            /* ⬅ light like cars.html */
+  color: #111;
+  border-radius: 1.1rem;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 900px;               /* ⬅ make card much wider */
+}
+
+/* Image column */
+.new-arrival-image {
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+
+.new-arrival-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;              /* ⬅ real height so it’s not squished */
+  object-fit: cover;
+}
+
+/* Text column */
+.new-arrival-body {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  color: #111;
+}
+
+.new-arrival-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.new-arrival-header .car-name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #111;
+}
+
+.new-arrival-meta {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.new-arrival-copy {
+  font-size: 0.88rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Pills */
+.new-arrival-pill {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.pill-soon {
+  background: #fff3cd;
+  border-color: #f1c40f;
+  color: #8a6d1a;
+}
+
+.pill-exclusive {
+  background: #fde2e2;
+  border-color: #e74c3c;
+  color: #a3261f;
+}
+
+.pill-now {
+  background: #e4ffe7;
+  border-color: #27ae60;
+  color: #1f7f45;
+}
+
+/* Reuse car-link style but keep it compact */
+.new-arrivals .car-link {
+  align-self: flex-start;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid #333;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: #111;
+  background: #fff;
+}
+
+/* Mobile: stack image on top */
+@media (max-width: 700px) {
+  .new-arrival-card {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .new-arrival-image {
+    flex: none;
+    max-width: 100%;
+  }
+
+  .new-arrival-image img {
+    min-height: 180px;
+  }
+
+  .new-arrival-body {
+    padding: 0.85rem 1rem 1rem;
+  }
+
+  .new-arrival-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+}
+
+
+
+
 /* Car Cards */
 .car-showcase {
   margin-top: 60px;
@@ -1003,10 +1163,10 @@ img.turo-badge {
   display: inline-block;
   border-radius: 999px;
   padding: 0.45rem 0.9rem;
-  border: none;
+  border: 3px solid black;
   background: linear-gradient(135deg, orange, #db5c39);
   color: #fff;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   cursor: pointer;
   text-decoration: none;
 }
@@ -1636,7 +1796,7 @@ img.turo-badge {
 .modal-btn {
   border-radius: 999px;
   padding: 0.5rem 1rem;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   cursor: pointer;
   border: none;
   text-decoration: none;
@@ -1645,12 +1805,13 @@ img.turo-badge {
 .modal-btn-primary {
   background: linear-gradient(135deg, orange, #db5c39);
   color: #ffffff;
+  border: 3px solid black;
 }
 
 .modal-btn-secondary {
   background: grey;
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 3px solid black;
 }
 
 .trip-form select {
@@ -1659,7 +1820,7 @@ img.turo-badge {
   border: 1px solid rgba(255, 255, 255, 0.18);
   background: rgba(18, 18, 35, 0.95);
   color: #f8f8f8;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 .modal-btn-danger {
@@ -1773,10 +1934,10 @@ img.turo-badge {
 
 .cars-page .car-link {
   display: inline-block;
-  font-size: 0.85rem;
+  font-size: 1.2rem;
   padding: 0.4rem 0.75rem;
-  border-radius: 999px;
-  border: 1px solid #333;
+  border-radius: 0;
+  border: 3px solid black;
   text-decoration: none;
   color: #111;
   background: #fff;
@@ -1794,10 +1955,171 @@ img.turo-badge {
   }
 
   .cars-page .car-card-image img {
-    min-height: 190px;
+    min-height: 200px;
   }
 
   .cars-page .car-card-body {
     padding: 0.8rem 1rem;
+  }
+}
+
+/* ===== New Arrivals – lighter, wider cards ===== */
+
+.new-arrivals {
+  padding: 3rem 1rem 3.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.new-arrivals .section-title {
+  font-size: 3rem;
+  margin-bottom: 0.25rem;
+}
+
+.new-arrivals .section-subtitle {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  margin-bottom: 1.6rem;
+}
+
+/* One big listing-style card per row */
+.new-arrivals-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center; /* center the wide cards */
+}
+
+.new-arrival-card {
+  display: flex;
+  flex-direction: row;
+  background: beige;            /* ⬅ light like cars.html */
+  color: #111;
+  border: 5px solid black;
+  border-radius: 0%;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 900px;               /* ⬅ make card much wider */
+}
+
+/* Image column */
+.new-arrival-image {
+  flex: 0 0 40%;
+  max-width: 40%;
+  border: 5px solid black;
+  border-radius: 0%;
+}
+
+.new-arrival-image img {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;              /* ⬅ real height so it’s not squished */
+  object-fit: cover;
+  border-radius: 0%;
+}
+
+/* Text column */
+.new-arrival-body {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  color: #111;
+}
+
+.new-arrival-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.new-arrival-header .car-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: #111;
+}
+
+.new-arrival-meta {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.new-arrival-copy {
+  font-size: 0.88rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Pills */
+.new-arrival-pill {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.pill-soon {
+  background: #fff3cd;
+  border-color: #f1c40f;
+  color: #8a6d1a;
+}
+
+.pill-exclusive {
+  background: #fde2e2;
+  border-color: #e74c3c;
+  color: #a3261f;
+}
+
+.pill-now {
+  background: #e4ffe7;
+  border-color: #27ae60;
+  color: #1f7f45;
+}
+
+/* Reuse car-link style but keep it compact */
+.new-arrivals .car-link {
+  align-self: center;
+  margin-top: 10%;
+  padding: auto;
+  border-radius: 999px;
+  border: 3px solid #333;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: black;
+  background: linear-gradient(lightgrey, beige, grey);
+}
+
+/* Mobile: stack image on top */
+@media (max-width: 700px) {
+  .new-arrival-card {
+    flex-direction: column;
+    max-width: 100%;
+  }
+
+  .new-arrival-image {
+    flex: none;
+    max-width: 100%;
+  }
+
+  .new-arrival-image img {
+    min-height: 180px;
+  }
+
+  .new-arrival-body {
+    padding: 0.85rem 1rem 1rem;
+  }
+
+  .new-arrival-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
   }
 }
