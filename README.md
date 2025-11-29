@@ -1,4 +1,4 @@
 # D865 - Drive865 Website Development
-* Website for my good buddies' business.
-<h2>Contributors:</h2>
+* Drive865 testing website. This is not actually in use, just for fun & gathering ideas.
+<h2>Written by:</h2>
 * Brennan Cheatwood
